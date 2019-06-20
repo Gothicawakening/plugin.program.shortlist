@@ -1,0 +1,65 @@
+# XBMC Media Center language file
+# Addon Name: Shortlist
+# Addon id: plugin.program.shortlist
+# Addon Provider: Gothicawakening
+msgid ""
+msgstr ""
+"Project-Id-Version: XBMC Addons\n"
+"Report-Msgid-Bugs-To: http://forum.xbmc.org/showthread.php?tid=184854\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: XBMC Translation Team\n"
+"Language-Team: English (http://www.transifex.com/projects/p/xbmc-addons/language/en/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#30001"
+msgid "Remove from shortlist"
+msgstr "Remove from shortlist"
+
+msgctxt "#30002"
+msgid "Move Up"
+msgstr "Move Up"
+
+msgctxt "#30003"
+msgid "Move Down"
+msgstr "Move Down"
+
+msgctxt "#30004"
+msgid "Move to Top"
+msgstr "Move to Top"
+
+msgctxt "#30005"
+msgid "Move to Bottom"
+msgstr "Move to Bottom"
+
+msgctxt "#30006"
+msgid "Show Info"
+msgstr "Show Info"
+
+msgctxt "#30007"
+msgid "Delete Shortlist"
+msgstr "Delete Shortlist"
+
+msgctxt "#30008"
+msgid "Create Shortlist"
+msgstr "Create Shortlist"
+
+msgctxt "#30009"
+msgid "Do you want to delete the"
+msgstr "Do you want to delete the"
+
+msgctxt "#30010"
+msgid "Shortlist"
+msgstr "Shortlist"
+
+msgctxt "#30011"
+msgid "Enter Shortlist name"
+msgstr "Enter Shortlist name"
+
+msgctxt "#30012"
+msgid "Add to Shortlist"
+msgstr "Add to Shortlist"
