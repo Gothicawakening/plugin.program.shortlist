@@ -94,11 +94,16 @@ if action is not None:
     elif action[0] == 'createList':
         # Add a new list to the database
         dialog = xbmcgui.Dialog()
-        name = dialog.input(__language__( 30011 ), type=xbmcgui.INPUT_ALPHANUM)
+        nameNice = dialog.input(__language__( 30011 ), type=xbmcgui.INPUT_ALPHANUM)
 
-        # Build database and save
-        database = []
-        saveDatabaseByName( database, name.lower() + ".db" )
+        database = None;
+
+        if nameNice is not None and nameNice is not "":
+            name = nameNice.lower( ) + ".db"
+
+            # Build database
+            database = []
+            # No need to save it's it's done below
 
     else:
         print "Action Unknown:"
