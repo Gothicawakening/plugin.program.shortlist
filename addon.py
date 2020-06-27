@@ -29,11 +29,6 @@ action = args.get( 'action' )
 dbName = args.get( 'dbName' )
 databaseName = args.get( 'databaseName' )
 
-# if dbName is not None:
-#     xbmc.log( "Started: " + ";".join(dbName), xbmc.LOGNOTICE )
-# else:
-#     xbmc.log( "Started", xbmc.LOGNOTICE )
-
 def build_url(query):
     return base_url + '?' + urllib.urlencode(query)
 
@@ -96,7 +91,7 @@ if action is not None:
         dialog = xbmcgui.Dialog()
         nameNice = dialog.input(__language__( 30011 ), type=xbmcgui.INPUT_ALPHANUM)
 
-        database = None;
+        database = None
 
         if nameNice is not None and nameNice is not "":
             name = nameNice.lower( ) + ".db"
@@ -106,8 +101,7 @@ if action is not None:
             # No need to save it's it's done below
 
     else:
-        print "Action Unknown:"
-        print action
+        print( action )
 
     if database is not None:
         saveDatabaseByName( database, name )
@@ -211,7 +205,8 @@ else:
 
             li.addContextMenuItems( commands )
 
-            # xbmc.log( filename, xbmc.LOGNOTICE);
+            # xbmc.log( filename, xbmc.LOGNOTICE)
             xbmcplugin.addDirectoryItem(handle=addon_handle, url=filename, listitem=li, isFolder=True)
 
         xbmcplugin.endOfDirectory(addon_handle)
+
