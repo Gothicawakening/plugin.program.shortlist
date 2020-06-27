@@ -12,9 +12,13 @@ __addondir__    = xbmc.translatePath( __addon__.getAddonInfo('profile') )
 __database__	= __addon__.getSetting('database').lower()
 databasePath 	= __addondir__ + __database__ + ".db"
 
+# Setting for last used database
+__lastused__ = __addon__.getSetting( "lastused" )
+
 def addItem( database, item ):
     # Append item
     # TODO: Check if already in database
+
 
     database.append( item )
 
@@ -22,13 +26,27 @@ def addItemToDatabase( dbName, item ):
     # Adds an item to the specified database
     database = getDatabaseByName( dbName )
 
-    # TODO: Check if already in database
+    # Check if already in database and add
+    exists = itemExists( database, item )
+    if not exists:
+        # Add to database
+        database.append( item )
 
-    # Append item
-    database.append( item )
+        # Save database again
+        saveDatabaseByName( database, dbName )
+        return True;
 
-    # Save database again
-    saveDatabaseByName( database, dbName )
+    return False
+
+    # Store as most recently used database
+
+def itemExists( database, item ):
+    # Search database end return if item exists based on filename
+    for i in database:
+        if( i.filename == item.filename ):
+            return True;
+
+    return False;
 
 def deleteItem( database, filename ):
     # Delete item based on filename
@@ -36,6 +54,12 @@ def deleteItem( database, filename ):
         if( item.filename == filename ) :
             database.remove( item )
             break
+
+def deleteItemFromDatabase( dbName, filename ):
+    # Delete item based on filename from named database
+    database = getDatabaseByName( dbName )
+    if database:
+        deleteItem( database, filename )
 
 def moveUp( database, filename ):
     # Moves an item earlier in the list
@@ -136,8 +160,12 @@ def listDatabases():
         saveDatabaseByName( database, "shortlist.db" )
         lst.append( "shortlist.db" )
 
-    # Show only databases
+    # Blank Database
     dbs = []
+
+    # Add last used
+
+    # Show only database files
     for l in lst:
         if l[-3:] == ".db":
             dbs.append( l[:-3].title() )

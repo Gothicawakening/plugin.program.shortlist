@@ -26,9 +26,11 @@ import os
 import pickle
 from shortlistitem import ShortlistItem
 from database import *
- 
-# if __name__ == '__main__':          
-def main():    
+
+__addon__       = xbmcaddon.Addon(id='plugin.program.shortlist')
+
+# if __name__ == '__main__':
+def main():
 
     lst = listDatabases()
     # xbmc.log( "; ".join(lst), xbmc.LOGNOTICE);
@@ -42,9 +44,9 @@ def main():
         #xbmc.log( dbName, xbmc.LOGNOTICE);
 
         videoInfoTag = sys.listitem.getVideoInfoTag()
-            
+
         item = ShortlistItem()
-        item.filename = xbmc.getInfoLabel('ListItem.FilenameAndPath')                    
+        item.filename = xbmc.getInfoLabel('ListItem.FilenameAndPath')
         # item.filename = sys.listitem.getfilename()
         item.title = sys.listitem.getLabel()
         item.duration = sys.listitem.getduration()
@@ -54,13 +56,28 @@ def main():
         item.plot = videoInfoTag.getPlot()
         item.plotoutline = videoInfoTag.getPlotOutline()
         item.thumb = sys.listitem.getArt( 'thumb' )
-        item.poster = sys.listitem.getArt( 'poster' )    
+        item.poster = sys.listitem.getArt( 'poster' )
         item.fanart = sys.listitem.getArt( 'fanart' )
-        
-        addItemToDatabase( dbName, item )
-            
-        # message = "'%s' added to your shortlist" % sys.listitem.getLabel()
-        message = "'%s' added to %s" % (item.title, dbNice )
-        xbmc.executebuiltin("Notification(\"Added\", \"%s\")" % message)
+
+        result = addItemToDatabase( dbName, item )
+
+        if result:
+            title = "Added"
+            message = "'%s' to %s" % (item.title, dbNice)
+        else:
+            lst = ['Keep','Remove']
+            ret = dialog.contextmenu(lst)
+
+            if ret == 0:
+                # Keep
+                title = "Kept"
+                message = "'%s' in %s" % (item.title, dbNice)
+            elif ret == 1:
+                # Delete
+                deleteItemFromDatabase( dbName, item.filename )
+                title = "Deleted"
+                message = "'%s' from %s" % (item.title, dbNice)
+
+        xbmc.executebuiltin("Notification(\"%s\", \"%s\")" % (title, message) )
 
 main()
