@@ -18,8 +18,6 @@ __lastused__ = __addon__.getSetting( "lastused" )
 def addItem( database, item ):
     # Append item
     # TODO: Check if already in database
-
-
     database.append( item )
 
 def addItemToDatabase( dbName, item ):
@@ -58,8 +56,9 @@ def deleteItem( database, filename ):
 def deleteItemFromDatabase( dbName, filename ):
     # Delete item based on filename from named database
     database = getDatabaseByName( dbName )
-    if database:
+    if database is not None:
         deleteItem( database, filename )
+        saveDatabaseByName( database, dbName )
 
 def moveUp( database, filename ):
     # Moves an item earlier in the list
@@ -108,10 +107,10 @@ def getDatabase():
 
 def getDatabaseByName( dbName ):
     # Get specified database
-    database = []
+    database = None
     dbPath = __addondir__ + dbName
 
-    xbmc.log( dbPath, xbmc.LOGNOTICE);
+    # xbmc.log( dbPath, xbmc.LOGNOTICE);
 
     if os.path.exists( dbPath ):
         shortlistFile = open( dbPath, 'r')

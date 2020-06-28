@@ -101,7 +101,7 @@ if action is not None:
             # No need to save it's it's done below
 
     else:
-        print( action )
+        xbmc.log("SHORTLIST: Action Unknown: " + action)
 
     if database is not None:
         saveDatabaseByName( database, name )
@@ -205,8 +205,9 @@ else:
 
             li.addContextMenuItems( commands )
 
-            # xbmc.log( filename, xbmc.LOGNOTICE)
+            # xbmc.log( filename, xbmc.LOGNOTICE);
             xbmcplugin.addDirectoryItem(handle=addon_handle, url=filename, listitem=li, isFolder=True)
 
         xbmcplugin.endOfDirectory(addon_handle)
+
 

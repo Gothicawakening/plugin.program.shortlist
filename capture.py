@@ -81,3 +81,4 @@ def main():
         xbmc.executebuiltin("Notification(\"%s\", \"%s\")" % (title, message) )
 
 main()
+
